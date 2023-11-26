@@ -3,13 +3,13 @@ Answer the following questions and provide the SQL queries used to find the answ
     
 **Question 1: Which cities and countries have the highest level of transaction revenues on the site?**
 
-
 SQL Queries:
-
-
+select country, city, transactionrevenue from all_sessions
+where transactionrevenue is not null
+order by transactionrevenue
 
 Answer:
-
+When executing the provided code, the data output indicates that the United States has the highest transaction revenues. However, it's crucial to note that a substantial portion of the transaction revenue data is missing, rendering the comparison of the highest transaction revenues inadequate due to insufficient data.
 
 
 
@@ -17,8 +17,21 @@ Answer:
 
 
 SQL Queries:
-
-
+SELECT
+  AVG(orderedquantity) AS avg_ordered_quantity,
+  CASE
+    WHEN city = '(not set)' OR city = 'not available in demo dataset' THEN NULL
+    ELSE city
+  END AS city,
+  country
+FROM
+  products
+JOIN
+  all_sessions ON products.sku = all_sessions.productsku
+GROUP BY
+  country, city
+ORDER BY
+  avg_ordered_quantity;
 
 Answer:
 
