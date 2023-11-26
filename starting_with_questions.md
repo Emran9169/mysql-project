@@ -43,11 +43,34 @@ Answer:
 
 
 SQL Queries:
-
+WITH ranked_products AS (
+  SELECT
+   case when city = '(not set)' or city = 'not available in demo dataset' then null 
+	else city end as city,
+    case when country = '(not set)' then null else country end as country,
+    name AS product_name,
+    RANK() OVER (PARTITION BY city, country ORDER BY COUNT(*) DESC) AS product_rank
+  FROM
+    all_sessions a
+  JOIN
+    products p ON a.productsku = p.sku	
+  GROUP BY
+    country, city, name
+)
+SELECT
+  city,
+  country,
+  product_name AS top_selling_product
+FROM
+  ranked_products
+WHERE
+  product_rank = 1 AND city IS NOT null AND country IS NOT null
+ORDER BY
+  country
 
 
 Answer:
-
+I was able to notice as the diversity of top-selling products across cities and countries suggests that consumer preferences may vary significantly based on local factors, cultural influences, or regional trends. the other thing i noticed is most of the top_selling product across each city as well as country is not unBuenoique, what i meant is most coutries and cities have multiple top selling products for instance United States, Atlanta has two top selling products among many products that are sold there.
 
 
 
