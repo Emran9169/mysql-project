@@ -58,8 +58,35 @@ Answer:
 
 
 Question 3: 
+Identify the most popular product in each country based on the total ordered quantity.
 
 SQL Queries:
+WITH ranked_product AS (
+  SELECT
+    p.name,
+    SUM(total_ordered) AS total_ordered,
+    country,
+    RANK() OVER (PARTITION BY country ORDER BY SUM(total_ordered) DESC) AS product_rank
+  FROM
+    products p
+  JOIN
+    all_sessions a ON p.sku = a.productsku
+  JOIN
+    sales_by_sku s ON p.sku = s.productsku
+  GROUP BY
+    p.name, a.country
+)
+SELECT
+  name,
+  total_ordered,
+  country
+FROM
+  ranked_product
+WHERE
+  product_rank = 1 AND country != '(not set)'
+ORDER BY
+  total_ordered desc
+
 
 Answer:
 
