@@ -111,7 +111,18 @@ Answer:
 
 
 Question 5: 
+ Calculate the average revenue per visit by channel grouping:
 
 SQL Queries:
-
+SELECT
+  channelgrouping,
+  AVG(unitprice / 1000 * unitssold) AS avg_revenue
+FROM
+  analytics
+WHERE
+  unitprice IS NOT NULL AND unitssold IS NOT NULL
+GROUP BY
+  channelgrouping
+ORDER BY
+  AVG(unitprice / 1000 * unitssold) DESC
 Answer:
