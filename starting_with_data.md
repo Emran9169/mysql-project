@@ -92,9 +92,19 @@ Answer:
 
 
 
-Question 4: 
+Question 4: find each unique product viewed by each visitor
 
 SQL Queries:
+SELECT
+  p.SKU,
+  p.name,
+  COUNT(*) AS view_count
+FROM
+  all_sessions a
+JOIN
+  products p ON a.productSKU = p.SKU
+GROUP BY
+  p.SKU
 
 Answer:
 
