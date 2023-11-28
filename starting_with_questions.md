@@ -126,7 +126,7 @@ SQL Queries:
 SELECT totalrevenue, city, country
 FROM (
 SELECT
- sum(unitprice*unitssold) as totalrevenue,
+ sum((unitprice/1000)*unitssold) as totalrevenue,
   CASE WHEN city = '(not set)' OR city = 'not available in demo dataset' THEN NULL
        ELSE city
   END AS city,
