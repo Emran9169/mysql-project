@@ -24,8 +24,34 @@ Answer:
 
 
 Question 2: 
-
+What percentage of total revenue is contributed by each city in united states
 SQL Queries:
+
+SELECT
+  city,
+  revenue * 100 AS revenue_percent
+FROM (
+  SELECT
+    city,
+    SUM(unitprice * unitssold) / (
+      SELECT SUM(b.unitprice * b.unitssold)
+      FROM all_sessions a
+      JOIN analytics b ON a.visitid = b.visitid
+      WHERE a.country = 'United States'
+    ) AS revenue
+  FROM 
+    all_sessions al
+  JOIN
+    analytics an ON al.visitid = an.visitid
+  WHERE
+    city != '(not set)' AND al.country = 'United States'
+  GROUP BY
+    city
+) AS subquery
+WHERE 
+  revenue IS NOT NULL
+ORDER BY
+  revenue DESC;
 
 Answer:
 
