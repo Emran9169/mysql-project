@@ -69,12 +69,12 @@ SELECT DISTINCT
     a.v2productcategory,
     a.pagetitle,
     a.pagepathlevel1,
-	p.orderedquantity,
-	p.stocklevel,
-	p.restockingleadtime,
-	p.sentimentscore,
-	p.sentimentmagnitude,
-	s.total_ordered
+    p.orderedquantity,
+    p.stocklevel,
+    p.restockingleadtime,
+    p.sentimentscore,
+    p.sentimentmagnitude,
+    s.total_ordered
 FROM new_analytics n
 JOIN new_all_sessions a ON a.visitid = n.visitid
 JOIN products p ON p.sku = a.productsku
