@@ -49,4 +49,34 @@ with new_all_sessions as (
 	    visitid, 
         fullvisitorid,  
         pageviews 
-)
+) 
+SELECT DISTINCT
+    n.visitid,
+    n.fullvisitorid,
+    n.pageviews,
+    n.total_unitprice,
+    a.channelgrouping,
+    a.time,
+    a.updatedcity,
+    a.updatedcountry,
+    a.timeonsite,
+    a.pageviews,
+    a.date,
+    a.type,
+    a.productprice,
+    a.productsku,
+    a.v2productname,
+    a.v2productcategory,
+    a.pagetitle,
+    a.pagepathlevel1,
+	p.orderedquantity,
+	p.stocklevel,
+	p.restockingleadtime,
+	p.sentimentscore,
+	p.sentimentmagnitude,
+	s.total_ordered
+FROM new_analytics n
+JOIN new_all_sessions a ON a.visitid = n.visitid
+JOIN products p ON p.sku = a.productsku
+JOIN sales_by_sku s ON s.productsku = a.productsku
+
