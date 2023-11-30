@@ -64,7 +64,7 @@ with new_all_sessions as (
 )
 , new_analytics as (
     select
-	    visitid, 
+	   distinct visitid, 
         fullvisitorid,  
         sum(unitprice)/1000 as total_unitprice
     from analytics
