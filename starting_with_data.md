@@ -1,5 +1,5 @@
 Question 1: 
-In the year 2016, which month has the highest total ordered quantity for a specific product? Display the name of the product along with the total ordered quantity.
+In the year 2016, list the top 5 month that has the highest total ordered quantity for a specific product? Display the name of the product along with the total ordered quantity.
 
 SQL Queries:
 SELECT
@@ -20,7 +20,8 @@ ORDER BY
   total_ordered_amount DESC;
 
 Answer: 
-
+When we run the above query we will see the top 5 month that got the highest amount of total ordered quantity with their names. so as we can see from the data 
+output area the month August is ranked first, second and third for the highest total ordered quantity and the product name ballpoint LED light pen is mentioned three times among the top 5 products. From this we can understand that August month is the busiest month and the product is in high demand.
 
 
 Question 2: 
@@ -37,14 +38,14 @@ FROM (
       SELECT SUM(b.unitprice * b.unitssold)
       FROM all_sessions a
       JOIN analytics b ON a.visitid = b.visitid
-      WHERE a.country = 'United States'
+      WHERE city != '(not set)' AND city != 'not available in demo dataset' and a.country = 'United States'
     ) AS revenue
   FROM 
     all_sessions al
   JOIN
     analytics an ON al.visitid = an.visitid
   WHERE
-    city != '(not set)' AND al.country = 'United States'
+    city != '(not set)' AND city != 'not available in demo dataset' and al.country = 'United States'
   GROUP BY
     city
 ) AS subquery
@@ -55,7 +56,7 @@ ORDER BY
 
 Answer:
 
-
+As United States generate the most revenue we wanted to see whuch states contribute the most so as we run the above query we can see Newyork is the state with the highest amount of revenue generating.
 
 Question 3: 
 Identify the most popular product in each country based on the total ordered quantity.
@@ -90,7 +91,8 @@ ORDER BY
 
 Answer:
 
-
+By running the above code, we can see the most popular product in each country and I can see that the products varies across country's choice so this data will
+help us understand which counntry priortize which product.
 
 Question 4: find each unique product viewed by each visitor
 
@@ -105,10 +107,13 @@ JOIN
   products p ON a.productSKU = p.SKU
 GROUP BY
   p.SKU
+ORDER BY
+  view_count DESC
 
 Answer:
 
-
+We can see from running the above query which product is visited more and is demanded more than other products so that we can focus on the quality of the product
+as it is wanted by most peoples. Men 100% cotton short sleeve hero tee white is the product that has the most views.
 
 Question 5: 
  Calculate the average revenue per visit by channel grouping:
@@ -126,3 +131,5 @@ GROUP BY
 ORDER BY
   AVG(unitprice / 1000 * unitssold) DESC
 Answer:
+
+The purpose of the above code is to see which channel is used the most and generates the most revenue. By executing the code we can see the Dissplay channel grouping generates the most revenue, it even generates two times more than what the second channel grouping generates.
