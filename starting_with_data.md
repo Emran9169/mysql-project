@@ -21,7 +21,8 @@ ORDER BY
 
 Answer: 
 When we run the above query we will see the top 5 month that got the highest amount of total ordered quantity with their names. so as we can see from the data 
-output area the month August is ranked first, second and third for the highest total ordered quantity and the product name ballpoint LED light pen is mentioned three times among the top 5 products. From this we can understand that August month is the busiest month and the product is in high demand.
+output area the month August is ranked first, second and third for the highest total ordered quantity and the product name ballpoint LED light pen is mentioned 
+three times among the top 5 products. From this we can understand that August month is the busiest month and the product is in high demand.
 
 
 Question 2: 
@@ -56,7 +57,8 @@ ORDER BY
 
 Answer:
 
-As United States generate the most revenue we wanted to see whuch states contribute the most so as we run the above query we can see Newyork is the state with the highest amount of revenue generating.
+As United States generate the most revenue we wanted to see whuch states contribute the most so as we run the above query we can see Newyork is the state with 
+the highest amount of revenue generating.
 
 Question 3: 
 Identify the most popular product in each country based on the total ordered quantity.
@@ -132,4 +134,5 @@ ORDER BY
   AVG(unitprice / 1000 * unitssold) DESC
 Answer:
 
-The purpose of the above code is to see which channel is used the most and generates the most revenue. By executing the code we can see the Dissplay channel grouping generates the most revenue, it even generates two times more than what the second channel grouping generates.
+The purpose of the above code is to see which channel is used the most and generates the most revenue. By executing the code we can see the Dissplay channel 
+grouping generates the most revenue, it even generates two times more than what the second channel grouping generates.
