@@ -46,7 +46,7 @@ with new_all_sessions as (
         REVERSE(SPLIT_PART(REVERSE(pagetitle), '|', 1))
     ELSE
       ''
-  END AS full_category_product,
+  END AS full_category_product,\* we are concatenating product category with the pagetitle but every consideration is taken into account as there are many cases*/
         pagepathlevel1
     from (
         select 
